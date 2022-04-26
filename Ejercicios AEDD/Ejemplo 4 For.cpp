@@ -9,7 +9,7 @@ int main()
     cin >> cantidadFacturas;
     for (int i = 0; i < cantidadFacturas; i++)
     {
-        cout << "Ingrese la factura " << i + 1 << " :";
+        cout << "Ingrese la factura " << i + 1 << " : ";
         cin >> monto;
         total += monto;
         if (monto > montoMayor)

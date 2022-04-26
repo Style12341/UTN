@@ -8,8 +8,8 @@ int main()
     cin >> calif;
     while (calif != -1)
     {
-        cout<<cantCalificacion;
         cantCalificacion++;
+        cout<<cantCalificacion<<endl;
         promedio += calif;
         cout<<"Ingrese la calificacion "<<cantCalificacion<<" o ingrese el -1 para terminar"<<endl;
         cin>>calif;
@@ -19,6 +19,7 @@ int main()
             cin >> calif;
         }
     }
+    cantCalificacion--;
     promedio /= cantCalificacion;
     cout << "El promedio, con " << cantCalificacion << " notas es de " << promedio << endl;
     system("pause");
