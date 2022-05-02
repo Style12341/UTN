@@ -1,6 +1,25 @@
 #include <iostream>
 #include <iomanip>
 using namespace std;
+/* Una empresa de ventas por correo vende cinco productos distintos, cuyos precios se muestran en la
+tabla siguiente:
+Número de producto Precio unitario
+1 2.98
+2 4.50
+3 9.98
+4 4.49
+5 6.87
+Escribir un programa que lea renglón a renglón una sucesión de pares de números, correspondientes a
+las ventas de una semana , como sigue:
+Número-de-producto Cantidad-vendida-en-un-día
+Se deben cargar los 5 productos, con su cantidad vendida, por cada dia de la semana. Tomando como
+semana de Lunes a Domingo. Cada lote de 5 productos, representará la venta diaria. Ese proceso, se
+debe realizar por cada día de la semana propuesta.
+El programa deberá calcular y mostrar por pantalla:
+        ● El producto que dio más ganancia por cada día.
+        ● La ganancia total del día.
+        ● El valor total facturado en la semana.
+La carga termina cuando se ingresa toda la carga semanal. */
 
 int main()
 {
@@ -23,11 +42,15 @@ int main()
     for (int i = 1; i <= 7; i++)
     {
         /*Inicializamos al ganancia total del dia como 0 para asi comenzar cada nuevo dia con
-        una ganancia 0 asi pudiendo sumarle las correspondientes en el siguiente ciclo for */
+        una ganancia 0 asi pudiendo sumarle las correspondientes en el siguiente ciclo for.
+        Tambien asignamos la ganancia maxima del producto de cada dia y asignamos que este
+        producto empieze siendo el nulo (0), para asi evitar problemas mas adelante.*/
         gananciaTotalDia = 0;
         pgananciaMaxima = 0;
+        pcongananciaMaxima = 0;
+        bool error = false;
         cout << "Ingrese todos los productos en orden correspondientes al dia ";
-        // Un switch para avisarle al usuario sobre que dia esta siendo realizada la carga de datos
+        // Un switch para informarle al usuario sobre que dia esta siendo realizada la carga de datos
         switch (i)
         {
         case 1:
@@ -59,11 +82,50 @@ int main()
             // Verificamos que los productos sean ingresados en orden (nos sirve para evitar la repeticion de un producto)
             do
             {
+
                 cout << "Ingrese el numero de producto " << j << " seguido de su cantidad vendida. Ex (1 Cantidad-vendida)" << endl;
+                /* Lo que sigue hasta el comentario marcado es para evitar un error al ingresar un dato que no sea entero,
+                no encontramos otra forma de hacerlo asi que averiguamos de que manera se podria hacer e intentamos hacerlo
+                lo menos alejado posible de lo que sabemos, el resto fue prueba y error. No sabiamos si agregarlo o no pero
+                queriamos evitar este error.*/
                 cin >> numeroProducto;
-            } while (numeroProducto != j);
-            cin >> cantidadVendida;
-            // ****Enseñenos arrays****. Verificamos que producto es para asi multiplicarlo por su precio para sumarselo a la ganancia total del dia
+                //Validamos el primer cin, si no es valido se informa al usuario que para continuar debe escribi 0 (o cualquier otra cosa).
+                if (!cin)
+                {
+                    cout << "Solo ingrese numeros enteros" << endl;
+                    cout << "Escriba 0 y presione enter para volver al ingreso de datos" << endl;
+                    cin.clear();
+                    cin.ignore();
+                    error = true;
+                }
+                else{
+                    cin >> cantidadVendida;
+                if (!cin)
+                {
+                    cout << "Solo ingrese numeros enteros" << endl;
+                    cout << "Escriba 0 y presione enter para volver al ingreso de datos" << endl;
+                    cin.clear();
+                    cin.ignore();
+                    error = true;
+                }
+                }
+                /* **Comentario Marcado** Lo que esta entre este y el anterior donde se comienza a explicar se podria obviar
+                , borarrlo y escribir las siguientes lineas en su lugar:
+                
+                cin >> numeroProducto>> cantidadVendida;
+                
+                */
+                if (numeroProducto != j)
+                {
+                    cout << "Ingrese el numero de producto correcto (" << j << ")" << endl;
+                }
+                if (cantidadVendida < 0)
+                {
+                    cout << "No puede ingresar una cantidad vendida Negativa" << endl;
+                }
+            } while (numeroProducto != j or cantidadVendida < 0 or error);
+
+            // *Enseñenos arrays*. Verificamos que producto es para asi multiplicarlo por su precio para sumarselo a la ganancia total del dia
             switch (numeroProducto)
             {
             case 1:
@@ -94,7 +156,8 @@ int main()
             // Con este if nos aseguramos de que el switch siguiente no se realize a menos que haya terminado el ingreso de productos por el dia actual
             if (j == 5)
             {
-                /*Este switch asigna a una variable mayorGPDX el numero de producto con mayor ganancia
+                /*   *Enseñenos arrays parte 2*
+                Este switch asigna a una variable mayorGPDX el numero de producto con mayor ganancia
                 a mayorGMDX asigna la ganancia maxima que genero ese producto en ese dia
                 y a gananciaTotalDiaX le asigna la ganancia total del dia evaluado*/
                 switch (i)
@@ -139,15 +202,53 @@ int main()
         }
         gananciaTotalSemana += gananciaTotalDia;
     }
+
     cout << fixed;
     cout << "El producto que dio mas ganancia en el dia:" << endl;
-    cout << "*Lunes:     Producto Nº" << mayorGPD1 << " con $" << setprecision(2) << mayorGMD1 << " de ganancia." << endl;
-    cout << "*Martes:    Producto Nº" << mayorGPD2 << " con $" << setprecision(2) << mayorGMD2 << " de ganancia." << endl;
-    cout << "*Miercoles: Producto Nº" << mayorGPD3 << " con $" << setprecision(2) << mayorGMD3 << " de ganancia." << endl;
-    cout << "*Jueves:    Producto Nº" << mayorGPD4 << " con $" << setprecision(2) << mayorGMD4 << " de ganancia." << endl;
-    cout << "*Viernes:   Producto Nº" << mayorGPD5 << " con $" << setprecision(2) << mayorGMD5 << " de ganancia." << endl;
-    cout << "*Sabado:    Producto Nº" << mayorGPD6 << " con $" << setprecision(2) << mayorGMD6 << " de ganancia." << endl;
-    cout << "*Domingo:   Producto Nº" << mayorGPD7 << " con $" << setprecision(2) << mayorGMD7 << " de ganancia." << endl;
+    // *****Enseñenos Strings**** Se podria haber realizando creando un string resultado  utlizando el operador ternario ?.
+    if (mayorGPD1 != 0)
+    {
+        cout << "*Lunes:     Producto numero " << mayorGPD1 << " con $" << setprecision(2) << mayorGMD1 << " de ganancia." << endl;
+    }
+    else
+        cout << "No se vendio nada el dia Lunes." << endl;
+    if (mayorGPD2 != 0)
+    {
+        cout << "*Martes:    Producto numero " << mayorGPD2 << " con $" << setprecision(2) << mayorGMD2 << " de ganancia." << endl;
+    }
+    else
+        cout << "No se vendio nada el dia Martes." << endl;
+    if (mayorGPD3 != 0)
+    {
+        cout << "*Miercoles: Producto numero " << mayorGPD3 << " con $" << setprecision(2) << mayorGMD3 << " de ganancia." << endl;
+    }
+    else
+        cout << "No se vendio nada el dia Miercoles." << endl;
+    if (mayorGPD4 != 0)
+    {
+        cout << "*Jueves:    Producto numero " << mayorGPD4 << " con $" << setprecision(2) << mayorGMD4 << " de ganancia." << endl;
+    }
+    else
+        cout << "No se vendio nada el dia Jueves." << endl;
+    if (mayorGPD5 != 0)
+    {
+        cout << "*Viernes:   Producto numero " << mayorGPD5 << " con $" << setprecision(2) << mayorGMD5 << " de ganancia." << endl;
+    }
+    else
+        cout << "No se vendio nada el dia Viernes." << endl;
+    if (mayorGPD6 != 0)
+    {
+        cout << "*Sabado:    Producto numero " << mayorGPD6 << " con $" << setprecision(2) << mayorGMD6 << " de ganancia." << endl;
+    }
+    else
+        cout << "No se vendio nada el dia Sabado." << endl;
+    if (mayorGPD7 != 0)
+    {
+        cout << "*Domingo:   Producto numero " << mayorGPD7 << " con $" << setprecision(2) << mayorGMD7 << " de ganancia." << endl;
+    }
+    else
+        cout << "No se vendio nada el dia Domingo." << endl;
+
     cout << "Las gananancias totales en el dia: " << endl;
     cout << "*Lunes:     $" << setprecision(2) << gananciaTotalDia1 << endl;
     cout << "*Martes:    $" << setprecision(2) << gananciaTotalDia2 << endl;
@@ -157,5 +258,6 @@ int main()
     cout << "*Sabado:    $" << setprecision(2) << gananciaTotalDia6 << endl;
     cout << "*Domingo:   $" << setprecision(2) << gananciaTotalDia7 << endl;
     cout << "La ganancia total de la semana fue: $" << setprecision(2) << gananciaTotalSemana << endl;
+    system("pause");
     return 0;
 }
