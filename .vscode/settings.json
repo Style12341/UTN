@@ -4,6 +4,7 @@
         "ostream": "cpp",
         "iomanip": "cpp",
         "*.tcc": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "random": "cpp"
     }
 }
