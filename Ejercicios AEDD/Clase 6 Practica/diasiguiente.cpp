@@ -11,9 +11,10 @@ int main()
     int dia, mes, anio;
     cin >> dia >> mes >> anio;
     diaSiguiente(dia, mes, anio);
-    cout << dia << "," << mes << "," << anio << endl;
+    cout << dia << "/" << mes << "/" << anio << endl;
     return 0;
 }
+
 bool esBisiesto(int anio)
 {
     return anio % 400 == 0 or (anio % 100 != 0 and anio % 4 == 0);
@@ -32,22 +33,23 @@ int diasMes(int mes, bool esBisiesto)
         else
             dias = 28;
         break;
-    case 1:;
-    case 3:;
-    case 5:;
-    case 7:;
+    case 1:
+    case 3:
+    case 5:
+    case 7:
     case 8:
     case 10:
     case 12:
-        dias == 31;
+        dias = 31;
         break;
-    case 4:;
-        case 6:;
-    case 9:;
+    case 4:
+    case 6:
+    case 9:
     case 11:
         dias = 30;
         break;
     }
+    return dias;
 }
 
 void diaSiguiente(int &dia, int &mes, int &anio)
@@ -67,10 +69,11 @@ void diaSiguiente(int &dia, int &mes, int &anio)
             mes == 1;
             anio++;
         }
-    }else
+    }
+    else
     {
-        dia=0;
-        mes=0;
-        anio=0;
+        dia = 0;
+        mes = 0;
+        anio = 0;
     }
 }
