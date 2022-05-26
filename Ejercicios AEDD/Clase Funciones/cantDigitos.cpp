@@ -1,22 +1,22 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-int cantidadDigitos(int x);
+int cifras(int x);
 int main()
 {
     int num;
     cout << "Ingrese un numero entero para calcular sus cifras" << endl;
     cin >> num;
-    cout << cantidadDigitos(num);
+    cout << cifras(num);
     return 0;
 }
-int cantidadDigitos(int x)
+int cifras(int x)
 {
     int resultado;
     if (x > 0)
     {
         x /= 10;
-        resultado = 1 + cantidadDigitos(x);
+        resultado = 1 + cifras(x);
     }
     else
         resultado = 0;
