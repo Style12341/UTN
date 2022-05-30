@@ -20,7 +20,15 @@ int main()
 
     return 0;
 }
-float promedio(int cantNum, int total)
+float promedio(int cantNum)
 {
-    return (total / cantNum);
+    float total;
+    for (int i = 0; i < cantNum; i++)
+    {
+        cout << "Ingrese el numero " << i + 1 << endl;
+        cin >> y;
+        total += y;
+    }
+    total/=cantNum;
+    return total;
 }
