@@ -5,6 +5,7 @@
         "iomanip": "cpp",
         "*.tcc": "cpp",
         "cmath": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "iosfwd": "cpp"
     }
 }
