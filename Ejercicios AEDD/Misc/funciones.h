@@ -3,6 +3,7 @@
 
 
 float promedio(int cantNum); //Calcula el promedio de cantNum
+float promedioA(int V[],int tl); //Calcula el promedio de un array;
 int cifras(int x); //Devuelve la cantidad de cifras del numero ingresado
 int cantidadDiv(int x); //Devuelve la cantidad de divisores de un numero
 unsigned long long int factorial(int x); //Calcula el factorial de un numero

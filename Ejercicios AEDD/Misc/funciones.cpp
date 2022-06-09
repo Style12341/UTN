@@ -16,6 +16,16 @@ float promedio(int cantNum)
     total/=cantNum;
     return total;
 }
+float promedioA(int V[],int tl)
+{
+    float total=0;
+    for (int i = 0; i < tl; i++)
+    {
+        total+=V[i];
+    }
+    total/=tl;
+    return total;
+}
 int cifras(int x)
 {
     int resultado;

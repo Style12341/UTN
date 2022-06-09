@@ -25,14 +25,14 @@ int main()
     auto duration = duration_cast<microseconds>(stop - start);
 
     cout << "Time taken by function berni: "
-         << duration.count() << " microseconds" << endl;
+         << duration.count() << " microseconds" <<" "<<tl<< endl;
     auto starte = high_resolution_clock::now();
     quitarUnListR(arregloC, tlC, 0);
     auto stope = high_resolution_clock::now();
     auto duratione = duration_cast<microseconds>(stope - starte);
 
     cout << "Time taken by function Julia: "
-         << duratione.count() << " microseconds" << endl;
+         << duratione.count() << " microseconds" <<" "<<tl<< endl;
     return 0;
 }
 
