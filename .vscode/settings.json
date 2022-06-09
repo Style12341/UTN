@@ -6,6 +6,7 @@
         "*.tcc": "cpp",
         "cmath": "cpp",
         "random": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "chrono": "cpp"
     }
 }
