@@ -35,6 +35,7 @@ int cantCifras(int x)
 }
 int potencia(int base, int exponent)
 {
+    if (exponent == 0) return 1;
     if (exponent == 1)
         return base;
     return base * potencia(base, exponent - 1);

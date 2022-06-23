@@ -5,16 +5,16 @@ eliminados y el promedio de los valores que quedan en el vector.*/
 #include <iostream>
 
 using namespace std;
-int buscarRep(int V[], int &tl, float &promedio);
+int quitarRep(int V[], int &tl, float &promedio);
 float promedioA(int V[], int tl);
-void sacarRepetidosAux(int vector[], int &tl, int repetido, int &tlR);
+void sacarRepetidosAux(int vector[], int &tl, int repetido, int &tlR,int primerRep);
 
 int main()
 {
     int pepito[50] = {1, 2, 3, 4, 2, 5, 3, 6, 7, 4, 8};
     int tl = 11;
     float promedio = 0;
-    int valoresPares = buscarRep(pepito, tl, promedio);
+    int valoresPares = quitarRep(pepito, tl, promedio);
     cout << "Los cantidad de valores pares removidos es: " << valoresPares << endl;
     cout << "El promedio resultante es: " << promedio << endl;
     for (int i = 0; i < tl; i++)
@@ -25,7 +25,7 @@ int main()
     return 0;
 }
 
-int buscarRep(int V[], int &tl, float &promedio)
+int quitarRep(int V[], int &tl, float &promedio)
 {
     int repetido;
     bool flag;
@@ -40,7 +40,7 @@ int buscarRep(int V[], int &tl, float &promedio)
             if (V[i] == V[counter])
             {
                 repetido = V[i];
-                sacarRepetidosAux(V, tl, repetido, cantRepetidos);
+                sacarRepetidosAux(V, tl, repetido, cantRepetidos,i);
                 flag = false;
                 i--;
                 if (repetido % 2 == 0)
@@ -66,10 +66,10 @@ float promedioA(int V[], int tl)
     total /= tl;
     return total;
 }
-void sacarRepetidosAux(int vector[], int &tl, int repetido, int &tlR)
+void sacarRepetidosAux(int vector[], int &tl, int repetido, int &tlR,int primerRep)
 {
     int repeticion[tl];          // Crea una array repeticion en el cual se guardan los indices que contienen el valor indicado repetido
-    for (int i = 0; i < tl; i++) // Aqui se guarda cada indice con el valor indicado repetido en el array repeticion, aumentando su tamaño logico.
+    for (int i = primerRep+1; i < tl; i++) // Aqui se guarda cada indice con el valor indicado repetido en el array repeticion, aumentando su tamaño logico.
     {
         if (repetido == vector[i])
         {

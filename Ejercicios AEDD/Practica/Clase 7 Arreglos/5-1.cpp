@@ -35,6 +35,6 @@ void inicializar_aleatorio(int V[], int tam)
     for (int i = 0; i < tam; i++)
     {
 
-        V[i] = rand();
+        V[i] = rand()%50;
     }
 }

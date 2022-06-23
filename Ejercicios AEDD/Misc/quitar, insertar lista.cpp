@@ -89,7 +89,7 @@ void quitarUnListR(int vector[], int &tl, int valor)
         }
     }
 }
-void JquitarUnListR(int vector[], int &tl, int valor){
+void quitarUnList(int vector[], int &tl, int valor){
 
     for (int i = 0; i < tl; i++)
     {
