@@ -17,25 +17,30 @@ int main()
 bool capicua(int x)
 {
     int cifras = cantCifras(x);
-    if (x < 10)return true;
-    return capicuaAux(x,potencia(10, cifras - 1));
+    if (x < 10)
+        return true;
+    return capicuaAux(x, potencia(10, cifras - 1));
 }
 
-bool capicuaAux(int x, int pot){
-    if (x < 10)return true;
-    if (x /pot != x % 10)return false;
-    return capicuaAux((x%pot)/10,pot/100);
+bool capicuaAux(int x, int pot)
+{
+    if (x < 10)
+        return true;
+    if (x / pot != x % 10)
+        return false;
+    return capicuaAux((x % pot) / 10, pot / 100);
 }
 
 int cantCifras(int x)
 {
-    if(x<10)
-    return 1;
+    if (x < 10)
+        return 1;
     return 1 + cantCifras(x / 10);
 }
 int potencia(int base, int exponent)
 {
-    if (exponent == 0) return 1;
+    if (exponent == 0)
+        return 1;
     if (exponent == 1)
         return base;
     return base * potencia(base, exponent - 1);
